@@ -1,0 +1,28 @@
+Initial submission used a very simple random forest classifier to look at
+the data and predict the outcome. This yielded a very strong accuracy upon
+submission with 95.5% accuracy on the prediction set. I tried to implement
+hyper-parameter tuning through GridSearchCV, but this took far too long on
+the dataset.
+
+My second submission was a simplification of the original dataset with pca.
+This used a simple halving of the number of columns from the original data.
+This reduced accuracy to 92.8%. If the time to transform the datasets is
+included, the PCA also increased runtime. Without PCA the runtime is 30s
+With PCA, runtime is 148s.
+
+The second submission shows signs of overfitting. The accuracy on the
+training data set went up, but the accuracy of the testing data went
+down.
+	If I re-run the PCA with 75% column reduction instead of 50% the
+	run speed is reduced to 41s and the accuracy on the testing set is 
+	improved to 93.5%
+
+	Reran the analysis with various numbers of column reduction to see
+	if I could find a sweet spot for this analysis. Made a mistake
+	with the direction of the reduction. 0.7 means 70% reduction not
+	70% of the original dataset.
+	Because of this error I ran it from 70% - 95% reduction then 30%
+	reduction to 5% reduction.
+
+	Plotted a full range of PCA incremented by 5% intervals. Saved to
+	file "PCA_test.png"
