@@ -1,14 +1,8 @@
 October 08, 2024
 
-The next steps on this are to implement some form of dimensionality reduction.
-We could try to select only the most influential columns, or we could try to
-combine columns through something like PCA.
-
-Either way would allow us to be more precise by increasing the speed of model
-training. As it stands now there is too much data for my pc to run hyper-
-parameter tuning. If we had fewer dimensions, we could probably tune more
-easily.
-
 Another thought on improvement would be to use a different form of hyper-
 parameter tuning. GridSearchCV is exhaustive, but RandomSearchCV should
 sample fewer data points and, therefore, be quicker.
+
+Next steps is to try other forms of classifiers. I want to try some neural
+network for this project. MLPClassifier will probably be the next option.

@@ -26,3 +26,23 @@ down.
 
 	Plotted a full range of PCA incremented by 5% intervals. Saved to
 	file "PCA_test.png"
+
+October 15, 2024
+
+I worked through PCA and made it run more quickly, but that didn't help me
+improve the training or test accuracy much. The model acheived a final
+accuracy of 93.2% on the training data. The PCA helped, but I think I would
+have better luck improving if I tried a different model.
+
+I'm not going to submit the optimized PCA output to Kaggle because I don't think
+it's a significant improvement.
+
+I want to try a neural network on this next.
+The NN classifier that sklearn has is MLPClassifier.
+Started implementing this. The solver='lbfgs' is supposed to work better for
+small datasets, but the default solver='adam' yields better accuracy on
+both training and test sets here.
+
+Interestingly, running PCA with a neural network increased the accuracy on the
+testing set. Without PCA, the test accuracy is 95.54%. With 60% PCA test set
+accuracy is 96.11%.
