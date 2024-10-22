@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Further work on the mnist dataset, but with a different classifier
-
-Created on Tue Oct 15 06:31:27 2024
+Created on Tue Oct 22 06:43:15 2024
 
 @author: zelda
 """
+
 
 # Header: Imports
 import time
@@ -16,7 +15,7 @@ import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
-from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
 
 # Set random seed
 SEED = 42
@@ -39,14 +38,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 start_time1 = time.time()
 
 # Initialize random forest classifier
-mlp = MLPClassifier(random_state=SEED)
+svc = SVC(kernel='rbf', random_state=SEED)
 
 # Train the models
-mlp.fit(X_train, y_train)
+svc.fit(X_train, y_train)
 
 # Make predictions on train and test sets
-train_pred = mlp.predict(X_train)
-test_pred = mlp.predict(X_test)
+train_pred = svc.predict(X_train)
+test_pred = svc.predict(X_test)
 
 # Compute accuracy scores
 print("Accuracy score on non-transofrmed training set:",
@@ -55,7 +54,7 @@ print("Accuracy score on non-transformed testing set",
       accuracy_score(y_test, test_pred))
 
 # Make predictions on prediction set.
-pred_out = mlp.predict(pred)
+pred_out = svc.predict(pred)
 
 # Save end time
 end_time1 = time.time()
@@ -76,14 +75,14 @@ X_test_pca = pca.transform(X_test)
 pred_pca = pca.transform(pred)
 
 # Initialize random forest classifier
-mlp = MLPClassifier(random_state=SEED)
+svc = SVC(random_state=SEED)
 
 # Train the models
-mlp.fit(X_train_pca, y_train)
+svc.fit(X_train_pca, y_train)
 
 # Make predictions on train and test sets
-train_pred_pca = mlp.predict(X_train_pca)
-test_pred_pca = mlp.predict(X_test_pca)
+train_pred_pca = svc.predict(X_train_pca)
+test_pred_pca = svc.predict(X_test_pca)
 
 # Compute accuracy scores
 print("Accuracy score on transofrmed training set:",
@@ -199,20 +198,20 @@ X_final = df.drop("label", axis=1)
 y_final = df['label']
 
 # Transform data
-X_final = pca.fit(X_final).transform(X_final)
-pred_final = pca.transform(pred)
+# X_final = pca.fit(X_final).transform(X_final)
+# pred_final = pca.transform(pred)
 
 # Initialize and retrain model
-mlp = MLPClassifier(random_state=SEED)
-mlp.fit(X_final, y_final)
+svc = SVC(random_state=SEED)
+svc.fit(X_final, y_final)
 
 # Make final predictions
-out = mlp.predict(pred_final)
+out = svc.predict(pred)
 # <codecell> Output final solution to a csv
 # Uncomment everything to save.
 # Convert to dataframe with proper format. Index + 1 is required by kaggle
-out = pd.DataFrame(data=pred_out_pca, index=pred.index + 1, columns=['Label'])
-out.index.name='ImageId'
+out_f = pd.DataFrame(data=out, index=pred.index + 1, columns=['Label'])
+out_f.index.name='ImageId'
 
 # Save predictions as a .csv
-out.to_csv("submission03.csv")
+out_f.to_csv("submission04.csv")

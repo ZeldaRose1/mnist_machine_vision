@@ -46,3 +46,12 @@ both training and test sets here.
 Interestingly, running PCA with a neural network increased the accuracy on the
 testing set. Without PCA, the test accuracy is 95.54%. With 60% PCA test set
 accuracy is 96.11%.
+
+Moving on to the SVM the default 'rbf' kernel has a test accuracy of 97.4% and
+a training set accuracy of 98.8%. The wiki page shows that a degree 9 poly
+kernel had the best performance, but when I run it in sklearn I get a test
+set accuracy of 80% and train set accuracy of 86.7%. I'll stick with the
+rbf kernel for now.
+
+I tried to normalize the data before running the SVC and I get accuracy in
+the single digits

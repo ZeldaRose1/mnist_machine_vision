@@ -4,5 +4,10 @@ Another thought on improvement would be to use a different form of hyper-
 parameter tuning. GridSearchCV is exhaustive, but RandomSearchCV should
 sample fewer data points and, therefore, be quicker.
 
-Next steps is to try other forms of classifiers. I want to try some neural
-network for this project. MLPClassifier will probably be the next option.
+I looked up the wiki page for the mnist dataset and it shows a table of the
+best error scores by classifier, distortion, and preprocessing. The two
+best classifiers are Convolutional neural networks and Support-Vector
+Machines.
+
+Want to test an SVM to see how it's performance goes. Then I want to try
+to see if I can use any data augmentation.
