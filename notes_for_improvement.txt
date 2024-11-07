@@ -9,5 +9,13 @@ best error scores by classifier, distortion, and preprocessing. The two
 best classifiers are Convolutional neural networks and Support-Vector
 Machines.
 
-Want to test an SVM to see how it's performance goes. Then I want to try
-to see if I can use any data augmentation.
+I tried to implement a dense neural network to classify it and got
+around 94.4% accuracy on the training set. I started with 1024 nodes in
+the first layer, 512 nodes in the second layer, a dropout layer, and an
+output layer. I reduced the number of nodes in the first two layers by half
+and the accuracy did not meaningfully decrease.
+
+The next step I want to take is to try and build two more models with
+different parameters and convert them into an ensemble model. 98% accuracy
+is my goal! Why? I don't know, it's arbitrary. I need to stop somewhere and
+this seems reasonable for computer vision.
